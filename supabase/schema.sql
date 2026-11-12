@@ -18,6 +18,9 @@
 -- Funktionen:
 --   public.create_direct_chat(uuid)
 --       Erstellt einen Einzelchat nur zwischen bestätigten Kontakten.
+--   public.create_group_chat(text, uuid[])
+--       Erstellt einen Gruppenchat für bestätigte, nicht blockierte Kontakte.
+--       Maximal 20 Mitglieder inklusive Ersteller; nur authenticated darf aufrufen.
 --   private.can_access_chat(uuid)
 --       Prüft Mitgliedschaft und Blockierungen.
 --   private.is_blocked_between(uuid, uuid)
