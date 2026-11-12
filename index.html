@@ -16,6 +16,7 @@ input{width:100%;background:#0c0e13;border:1px solid var(--line);color:var(--tex
 .app{height:100dvh;min-height:540px;display:grid;grid-template-rows:66px 1fr;max-width:1500px;margin:auto;padding:0 16px}.topbar{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}.topbar .brand img{width:38px;height:38px}.topbar .brand h1{font-size:20px}.topbar .spacer{flex:1}.user-pill{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
 .workspace{min-height:0;display:grid;grid-template-columns:340px minmax(0,1fr);gap:14px;padding:14px 0}.sidebar,.chat-panel{background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:18px;min-height:0}.sidebar{display:flex;flex-direction:column;overflow:hidden}.side-scroll{overflow:auto;padding:14px;display:flex;flex-direction:column;gap:16px}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 8px}.search-results,.request-list,.contact-list{display:grid;gap:7px}.result,.contact,.request{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--text);text-align:left;width:100%}.result:hover,.contact:hover,.contact.active{background:var(--panel2);border-color:var(--line)}.avatar{width:38px;height:38px;border-radius:50%;background:#303642;color:#fff;display:grid;place-items:center;font-weight:700;flex:none}.person{min-width:0;flex:1}.person b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person small{display:block;color:var(--muted);margin-top:3px}.request-actions{display:flex;gap:5px}.request-actions .btn{padding:6px 9px;font-size:12px}.empty{color:var(--muted);font-size:13px;text-align:center;padding:24px 12px}
 .chat-panel{display:flex;flex-direction:column;overflow:hidden}.chat-head{height:68px;display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}.chat-head h2{font-size:16px;margin:0}.chat-head small{display:block;color:var(--muted);margin-top:3px}.messages{flex:1;min-height:0;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:10px}.bubble{max-width:min(72%,620px);align-self:flex-start;background:#20242d;border:1px solid #2d333f;border-radius:16px 16px 16px 5px;padding:10px 13px;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:#e8eaf0;color:#12141a;border-color:#e8eaf0;border-radius:16px 16px 5px 16px}.bubble .meta{font-size:11px;opacity:.65;margin-top:5px}.composer{display:flex;gap:8px;padding:14px;border-top:1px solid var(--line)}.composer input{flex:1}.welcome{margin:auto;text-align:center;padding:28px;max-width:420px}.welcome .big-icon{font-size:42px;margin-bottom:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#272c36;border:1px solid #424958;padding:10px 15px;border-radius:12px;z-index:10;max-width:calc(100vw - 30px);box-shadow:0 10px 30px #0008}
+.section-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.section-row .section-title{margin:0}.group-form{display:grid;gap:8px;margin:10px 0;padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:12px}.group-options{display:grid;gap:6px;max-height:150px;overflow:auto}.group-option{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}.group-option input{width:auto}.group{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--text);text-align:left;width:100%}.group:hover,.group.active{background:var(--panel2);border-color:var(--line)}
 @media(max-width:760px){.app{padding:0;grid-template-rows:60px 1fr}.topbar{padding:0 12px}.workspace{padding:8px;grid-template-columns:1fr;gap:8px}.sidebar{min-height:0;max-height:42vh}.chat-panel{min-height:0}.side-scroll{padding:10px}.chat-head{height:58px;padding:9px 12px}.messages{padding:12px}.bubble{max-width:88%}.user-pill span{display:none}}
 </style>
 </head>
@@ -29,7 +30,7 @@ const SUPABASE_URL = 'https://pmlcstqpmmoiqnvfxspl.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_kx4UGLboJuhwN6P3JcbNZg_-39zZoZV';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = (s) => document.querySelector(s);
-const state = { user:null, username:'', requests:[], contacts:[], chats:[], activeChat:null, activeContact:null, requestProfiles:{}, messages:[], channel:null, searchTimer:null };
+const state = { user:null, username:'', requests:[], contacts:[], chats:[], groups:[], activeChat:null, activeChatType:null, activeGroupTitle:'', activeContact:null, requestProfiles:{}, messages:[], channel:null, searchTimer:null };
 const esc = (v='') => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const initials = (s='?') => esc(s.slice(0,1).toUpperCase() || '?');
 function toast(message){const el=$('#toast');el.textContent=message;el.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.add('hidden'),3200)}
@@ -48,10 +49,13 @@ function appShell(){ $('#root').innerHTML=`
 <section><h3 class="section-title">Nutzer suchen</h3><input id="user-search" type="search" placeholder="Benutzername eingeben" autocomplete="off"><div id="search-results" class="search-results"></div></section>
 <section><h3 class="section-title">Kontaktanfragen</h3><div id="requests" class="request-list"></div></section>
 <section><h3 class="section-title">Kontakte</h3><div id="contacts" class="contact-list"></div></section>
+<section><div class="section-row"><h3 class="section-title">Gruppen</h3><button class="btn" id="show-group-form" type="button">+ Neu</button></div><div id="group-form" class="group-form hidden"><input id="group-title" maxlength="60" placeholder="Gruppenname"><div id="group-contact-options" class="group-options"></div><button class="btn primary" id="make-group" type="button">Gruppe erstellen</button></div><div id="groups" class="contact-list"></div></section>
 </div></aside>
 <main class="chat-panel" id="chat-panel"><div class="welcome"><div class="big-icon">✉</div><h2>Willkommen bei MyChat</h2><p class="muted">Suche nach einem MyDigital-Benutzernamen und sende eine Kontaktanfrage. Sobald sie angenommen wurde, könnt ihr chatten.</p></div></main>
 </div></div>`;
 $('#logout').addEventListener('click',()=>supabase.auth.signOut());
+$('#show-group-form').addEventListener('click',()=>{const form=$('#group-form');form.classList.toggle('hidden');$('#group-contact-options').innerHTML=state.contacts.length?state.contacts.map(p=>'<label class="group-option"><input type="checkbox" value="'+p.id+'"><span>@'+esc(p.username)+'</span></label>').join(''):'<p class="small muted">Du brauchst zuerst bestätigte Kontakte.</p>';});
+$('#make-group').addEventListener('click',createGroup);
 $('#user-search').addEventListener('input',e=>{clearTimeout(state.searchTimer);const q=e.target.value.trim().toLowerCase();state.searchTimer=setTimeout(()=>searchUsers(q),250)});
 }
 async function boot(){
@@ -98,6 +102,7 @@ async function loadSidebar(){
  state.requestProfiles=profileMap;
  state.contacts=accepted.map(r=>{const id=r.sender_id===state.user.id?r.receiver_id:r.sender_id;return{id,username:profileMap.get(id)||'MyDigital-Nutzer'}}).sort((a,b)=>a.username.localeCompare(b.username));
  state.chats=chatsRes.data||[];
+ state.groups=state.chats.filter(chat=>chat.chat_type==='group');
  renderSidebar();
 }
 function renderSidebar(){
@@ -112,13 +117,25 @@ function renderSidebar(){
  cbox.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>openContact(b.dataset.contact)));
  }
 
+ const gbox=$('#groups');
+ if(gbox){gbox.innerHTML=state.groups.length?state.groups.map(g=>'<button class="group '+(state.activeChat===g.id?'active':'')+'" data-group="'+g.id+'"><div class="avatar">#</div><div class="person"><b>'+esc(g.title||'Gruppe')+'</b><small>Gruppenchat</small></div></button>').join(''):'<p class="small muted">Noch keine Gruppen.</p>';gbox.querySelectorAll('[data-group]').forEach(b=>b.addEventListener('click',()=>openGroup(b.dataset.group)));}
 }
 async function answerRequest(id,status){
  const {error}=await supabase.from('chat_contact_requests').update({status,updated_at:new Date().toISOString()}).eq('id',id);
  if(error){showError(error);return}toast(status==='accepted'?'Kontakt hinzugefügt.':'Anfrage abgelehnt.');await loadSidebar();
 }
+async function createGroup(){
+ const title=$('#group-title').value.trim();const ids=[...$('#group-contact-options').querySelectorAll('input[type="checkbox"]:checked')].map(input=>input.value);
+ if(title.length<2){toast('Bitte gib einen Gruppennamen ein.');return}if(!ids.length){toast('Wähle mindestens einen Kontakt aus.');return}
+ const button=$('#make-group');button.disabled=true;const {data,error}=await supabase.rpc('create_group_chat',{p_title:title,p_member_ids:ids});button.disabled=false;
+ if(error){showError(error);return}$('#group-title').value='';$('#group-form').classList.add('hidden');toast('Gruppe erstellt.');await loadSidebar();await openGroup(data);
+}
+async function openGroup(chatId){
+ const group=state.groups.find(g=>g.id===chatId);if(!group)return;state.activeContact=null;state.activeChat=chatId;state.activeChatType='group';state.activeGroupTitle=group.title||'Gruppe';renderSidebar();await loadMessages();
+ if(state.channel)await supabase.removeChannel(state.channel);state.channel=supabase.channel('mychat-'+chatId).on('postgres_changes',{event:'INSERT',schema:'public',table:'chat_messages',filter:'chat_id=eq.'+chatId},payload=>{if(payload.new.sender_id!==state.user.id){state.messages.push(payload.new);renderMessages()}}).subscribe();
+}
 async function openContact(userId){
- state.activeContact=userId;
+ state.activeContact=userId;state.activeChatType='direct';
  const contact=state.contacts.find(c=>c.id===userId);if(!contact)return;
  const {data:chatId,error}=await supabase.rpc('create_direct_chat',{p_other_user:userId});
  if(error){showError(error);return}
@@ -135,10 +152,16 @@ async function loadMessages(){
  state.messages=data||[];renderMessages();
 }
 function renderMessages(){
+ if(state.activeChatType==='group'){renderGroupMessages();return}
  const contact=state.contacts.find(c=>c.id===state.activeContact);const panel=$('#chat-panel');if(!panel||!contact)return;
  panel.innerHTML=`<header class="chat-head"><div class="avatar">${initials(contact.username)}</div><div><h2>@${esc(contact.username)}</h2><small>Privater Chat</small></div></header><div class="messages" id="messages">${state.messages.length?state.messages.map(m=>`<article class="bubble ${m.sender_id===state.user.id?'mine':''}"><div>${esc(m.message_text)}</div><div class="meta">${new Date(m.created_at).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})}</div></article>`).join(''):'<p class="empty">Noch keine Nachrichten. Schreib die erste Nachricht!</p>'}</div><form class="composer" id="message-form"><input id="message-text" maxlength="5000" autocomplete="off" placeholder="Nachricht schreiben …" aria-label="Nachricht"><button class="btn primary" type="submit">Senden</button></form>`;
  const list=$('#messages');list.scrollTop=list.scrollHeight;
  $('#message-form').addEventListener('submit',sendMessage);
+}
+function renderGroupMessages(){
+ const panel=$('#chat-panel');if(!panel)return;
+ panel.innerHTML='<header class="chat-head"><div class="avatar">#</div><div><h2>'+esc(state.activeGroupTitle)+'</h2><small>Gruppenchat</small></div></header><div class="messages" id="messages">'+(state.messages.length?state.messages.map(m=>'<article class="bubble '+(m.sender_id===state.user.id?'mine':'')+'"><div>'+esc(m.message_text)+'</div><div class="meta">'+(m.sender_id===state.user.id?'Du':'Mitglied')+' · '+new Date(m.created_at).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})+'</div></article>').join(''):'<p class="empty">Noch keine Nachrichten. Schreib die erste Nachricht!</p>')+'</div><form class="composer" id="message-form"><input id="message-text" maxlength="5000" autocomplete="off" placeholder="Nachricht an die Gruppe …" aria-label="Nachricht"><button class="btn primary" type="submit">Senden</button></form>';
+ const list=$('#messages');list.scrollTop=list.scrollHeight;$('#message-form').addEventListener('submit',sendMessage);
 }
 async function sendMessage(e){
  e.preventDefault();const input=$('#message-text');const text=input.value.trim();if(!text)return;
