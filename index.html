@@ -29,7 +29,7 @@ const SUPABASE_URL = 'https://pmlcstqpmmoiqnvfxspl.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_kx4UGLboJuhwN6P3JcbNZg_-39zZoZV';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = (s) => document.querySelector(s);
-const state = { user:null, username:'', requests:[], contacts:[], chats:[], activeChat:null, activeContact:null, messages:[], channel:null, searchTimer:null };
+const state = { user:null, username:'', requests:[], contacts:[], chats:[], activeChat:null, activeContact:null, requestProfiles:{}, messages:[], channel:null, searchTimer:null };
 const esc = (v='') => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const initials = (s='?') => esc(s.slice(0,1).toUpperCase() || '?');
 function toast(message){const el=$('#toast');el.textContent=message;el.classList.remove('hidden');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.add('hidden'),3200)}
@@ -87,12 +87,15 @@ async function loadSidebar(){
  state.requests=reqRes.data||[];
  const accepted=state.requests.filter(r=>r.status==='accepted');
  const ids=[...new Set(accepted.map(r=>r.sender_id===state.user.id?r.receiver_id:r.sender_id))];
+ const requestIds=state.requests.filter(r=>r.receiver_id===state.user.id&&r.status==='pending').map(r=>r.sender_id);
+ const lookupIds=[...new Set([...ids,...requestIds])];
  const [profilesRes, chatsRes]=await Promise.all([
-  ids.length?supabase.from('profiles').select('id,username').in('id',ids):Promise.resolve({data:[],error:null}),
+  lookupIds.length?supabase.from('profiles').select('id,username').in('id',lookupIds):Promise.resolve({data:[],error:null}),
   memberRes.data?.length?supabase.from('chats').select('id,chat_type,created_at').in('id',memberRes.data.map(x=>x.chat_id)):Promise.resolve({data:[],error:null})
  ]);
  if(profilesRes.error)showError(profilesRes.error);if(chatsRes.error)showError(chatsRes.error);
  const profileMap=new Map((profilesRes.data||[]).map(p=>[p.id,p.username]));
+ state.requestProfiles=profileMap;
  state.contacts=accepted.map(r=>{const id=r.sender_id===state.user.id?r.receiver_id:r.sender_id;return{id,username:profileMap.get(id)||'MyDigital-Nutzer'}}).sort((a,b)=>a.username.localeCompare(b.username));
  state.chats=chatsRes.data||[];
  renderSidebar();
@@ -111,8 +114,7 @@ function renderSidebar(){
  if(cbox){cbox.innerHTML=state.contacts.length?state.contacts.map(c=>`<button class="contact ${state.activeContact===c.id?'active':''}" data-contact="${c.id}"><div class="avatar">${initials(c.username)}</div><div class="person"><b>@${esc(c.username)}</b><small>Kontakt</small></div></button>`).join(''):'<p class="small muted">Noch keine Kontakte.</p>';
  cbox.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>openContact(b.dataset.contact)));
  }
- const search=$('#search-results');
- if(search&&outgoing.length){const note=document.createElement('p');note.className='small muted';note.textContent=outgoing.length+' ausstehende Anfrage(n) von dir';search.append(note)}
+
 }
 async function answerRequest(id,status){
  const {error}=await supabase.from('chat_contact_requests').update({status,updated_at:new Date().toISOString()}).eq('id',id);
