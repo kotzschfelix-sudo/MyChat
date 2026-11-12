@@ -1,5 +1,27 @@
--- MyChat v1 core schema
--- Applied to the shared MyDigital Supabase project as migration mychat_v1_core.
--- This file documents the database setup; use migrations for future changes.
--- Tables: chat_contact_requests, chat_blocks, chats, chat_members, chat_messages.
--- RLS is enabled on every MyChat table. Chat content is visible only to chat members.
+-- MyChat v1 – Datenbankübersicht
+-- Das produktive Schema wurde bereits im gemeinsamen Supabase-Projekt
+-- eingerichtet. Nicht als zweite Migration erneut ausführen.
+--
+-- Tabellen:
+--   public.chat_contact_requests  Kontaktanfragen (pending/accepted/declined)
+--   public.chat_blocks            persönliche Blockierungen
+--   public.chats                  Einzel- und spätere Gruppenchats
+--   public.chat_members           Mitgliedschaften
+--   public.chat_messages          private Chatnachrichten
+--
+-- Schutz:
+--   RLS ist auf allen fünf Tabellen aktiviert.
+--   Anon hat keine Tabellenrechte.
+--   Authenticated erhält nur die für die Oberfläche notwendigen Rechte.
+--   Nachrichten und Chats sind nur für berechtigte Mitglieder sichtbar.
+--
+-- Funktionen:
+--   public.create_direct_chat(uuid)
+--       Erstellt einen Einzelchat nur zwischen bestätigten Kontakten.
+--   private.can_access_chat(uuid)
+--       Prüft Mitgliedschaft und Blockierungen.
+--   private.is_blocked_between(uuid, uuid)
+--       Prüft Blockierungen ohne fremde Blocklisten offenzulegen.
+--
+-- Realtime:
+--   public.chat_messages ist in supabase_realtime veröffentlicht.
