@@ -1,0 +1,5 @@
+-- MyChat v1 core schema
+-- Applied to the shared MyDigital Supabase project as migration mychat_v1_core.
+-- This file documents the database setup; use migrations for future changes.
+-- Tables: chat_contact_requests, chat_blocks, chats, chat_members, chat_messages.
+-- RLS is enabled on every MyChat table. Chat content is visible only to chat members.
