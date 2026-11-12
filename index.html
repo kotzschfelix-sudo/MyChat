@@ -95,7 +95,7 @@ async function loadSidebar(){
  const lookupIds=[...new Set([...ids,...requestIds])];
  const [profilesRes, chatsRes]=await Promise.all([
   lookupIds.length?supabase.from('profiles').select('id,username').in('id',lookupIds):Promise.resolve({data:[],error:null}),
-  memberRes.data?.length?supabase.from('chats').select('id,chat_type,created_at').in('id',memberRes.data.map(x=>x.chat_id)):Promise.resolve({data:[],error:null})
+  memberRes.data?.length?supabase.from('chats').select('id,chat_type,title,created_at').in('id',memberRes.data.map(x=>x.chat_id)):Promise.resolve({data:[],error:null})
  ]);
  if(profilesRes.error)showError(profilesRes.error);if(chatsRes.error)showError(chatsRes.error);
  const profileMap=new Map((profilesRes.data||[]).map(p=>[p.id,p.username]));
