@@ -15,7 +15,7 @@
 input{width:100%;background:#0c0e13;border:1px solid var(--line);color:var(--text);border-radius:12px;padding:12px 14px;outline:none}input:focus{border-color:#858d9c}.btn{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--panel2);color:var(--text)}.btn.primary{background:var(--accent);color:var(--accentText);border-color:var(--accent);font-weight:650}.btn.subtle{background:transparent}.btn.danger{color:#fecaca}.btn.full{width:100%}.topbar a.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
 .app{height:100dvh;min-height:540px;display:grid;grid-template-rows:66px 1fr;max-width:1500px;margin:auto;padding:0 16px}.topbar{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line)}.topbar .brand img{width:38px;height:38px}.topbar .brand h1{font-size:20px}.topbar .spacer{flex:1}.user-pill{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
 .workspace{min-height:0;display:grid;grid-template-columns:340px minmax(0,1fr);gap:14px;padding:14px 0}.sidebar,.chat-panel{background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:18px;min-height:0}.sidebar{display:flex;flex-direction:column;overflow:hidden}.side-scroll{overflow:auto;padding:14px;display:flex;flex-direction:column;gap:16px}.section-title{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 8px}.search-results,.request-list,.contact-list{display:grid;gap:7px}.result,.contact,.request{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--text);text-align:left;width:100%}.result:hover,.contact:hover,.contact.active{background:var(--panel2);border-color:var(--line)}.avatar{width:38px;height:38px;border-radius:50%;background:#303642;color:#fff;display:grid;place-items:center;font-weight:700;flex:none;position:relative;overflow:hidden}.avatar-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}.avatar-button{border:1px solid var(--line);padding:0;color:var(--text);cursor:pointer}.avatar-button .avatar-image{z-index:1}.person{min-width:0;flex:1}.person b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person small{display:block;color:var(--muted);margin-top:3px}.request-actions{display:flex;gap:5px}.request-actions .btn{padding:6px 9px;font-size:12px}.empty{color:var(--muted);font-size:13px;text-align:center;padding:24px 12px}
-.chat-panel{display:flex;flex-direction:column;overflow:hidden}.chat-head{height:68px;display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}.chat-head h2{font-size:16px;margin:0}.chat-head small{display:block;color:var(--muted);margin-top:3px}.messages{flex:1;min-height:0;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:10px}.bubble{max-width:min(72%,620px);align-self:flex-start;background:#20242d;border:1px solid #2d333f;border-radius:16px 16px 16px 5px;padding:10px 13px;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:#e8eaf0;color:#12141a;border-color:#e8eaf0;border-radius:16px 16px 5px 16px}.bubble .meta{font-size:11px;opacity:.65;margin-top:5px}.composer{display:flex;align-items:center;gap:8px;padding:14px;border-top:1px solid var(--line)}.composer input[type=text]{flex:1;min-width:0}.attach-btn{flex:none;padding:10px 12px}.attachment-list{display:flex;flex-wrap:wrap;gap:7px;margin:0 14px 10px}.attachment-chip{font-size:12px;padding:6px 9px;border:1px solid var(--line);border-radius:9px;color:var(--muted)}.message-files{display:flex;flex-direction:column;gap:7px;margin-top:8px}.message-file{display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid var(--line);border-radius:9px;color:inherit;text-decoration:none;font-size:12px;max-width:100%;overflow-wrap:anywhere}.message-file img{max-width:190px;max-height:150px;object-fit:contain;border-radius:7px}.bubble.mine .message-file{color:#12141a;border-color:#b8bbc3}.attachment-note{font-size:12px;color:var(--muted);padding:5px 14px 0}.welcome{margin:auto;text-align:center;padding:28px;max-width:420px}.welcome .big-icon{font-size:42px;margin-bottom:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#272c36;border:1px solid #424958;padding:10px 15px;border-radius:12px;z-index:10;max-width:calc(100vw - 30px);box-shadow:0 10px 30px #0008}
+.chat-panel{display:flex;flex-direction:column;overflow:hidden}.chat-head{height:68px;display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}.chat-head h2{font-size:16px;margin:0}.chat-head small{display:block;color:var(--muted);margin-top:3px}.messages{flex:1;min-height:0;overflow:auto;padding:18px;display:flex;flex-direction:column;gap:10px}.bubble{max-width:min(72%,620px);align-self:flex-start;background:#20242d;border:1px solid #2d333f;border-radius:16px 16px 16px 5px;padding:10px 13px;overflow-wrap:anywhere}.bubble.mine{align-self:flex-end;background:#e8eaf0;color:#12141a;border-color:#e8eaf0;border-radius:16px 16px 5px 16px}.bubble .meta{font-size:11px;opacity:.65;margin-top:5px}.composer{display:flex;align-items:center;gap:8px;padding:14px;border-top:1px solid var(--line)}.composer input[type=text]{flex:1;min-width:0}.attach-btn{flex:none;padding:10px 12px}.attachment-list{display:flex;flex-wrap:wrap;gap:7px;margin:0 14px 10px}.attachment-chip{font-size:12px;padding:6px 9px;border:1px solid var(--line);border-radius:9px;color:var(--muted)}.message-files{display:flex;flex-direction:column;gap:7px;margin-top:8px}.message-file{display:flex;align-items:center;gap:8px;padding:7px 9px;border:1px solid var(--line);border-radius:9px;color:inherit;text-decoration:none;font-size:12px;max-width:100%;overflow-wrap:anywhere}.message-file img{max-width:190px;max-height:150px;object-fit:contain;border-radius:7px}.message-actions{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}.message-actions .btn{font-size:11px;padding:5px 8px}.bubble.mine .message-actions .btn{color:#20232a;border-color:#b8bbc3;background:#f5f6f8}.pinned-strip{padding:9px 14px;background:#20242d;border-bottom:1px solid var(--line);font-size:13px;display:flex;align-items:center;gap:8px}.pinned-strip .pin-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.share-overlay{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:18px;z-index:20}.share-dialog{width:min(420px,100%);background:#151820;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 20px 60px #0009}.share-dialog h3{margin:0 0 12px}.share-dialog select{width:100%;padding:12px;background:#0c0e13;color:var(--text);border:1px solid var(--line);border-radius:10px}.share-dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.bubble.mine .message-file{color:#12141a;border-color:#b8bbc3}.attachment-note{font-size:12px;color:var(--muted);padding:5px 14px 0}.welcome{margin:auto;text-align:center;padding:28px;max-width:420px}.welcome .big-icon{font-size:42px;margin-bottom:12px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#272c36;border:1px solid #424958;padding:10px 15px;border-radius:12px;z-index:10;max-width:calc(100vw - 30px);box-shadow:0 10px 30px #0008}
 .section-row{display:flex;align-items:center;justify-content:space-between;gap:8px}.section-row .section-title{margin:0}.group-form{display:grid;gap:8px;margin:10px 0;padding:10px;background:var(--panel2);border:1px solid var(--line);border-radius:12px}.group-options{display:grid;gap:6px;max-height:150px;overflow:auto}.group-option{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text)}.group-option input{width:auto}.group{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--text);text-align:left;width:100%}.group:hover,.group.active{background:var(--panel2);border-color:var(--line)}
 @media(max-width:760px){.app{padding:0;grid-template-rows:60px 1fr}.topbar{padding:0 12px}.workspace{padding:8px;grid-template-columns:1fr;gap:8px}.sidebar{min-height:0;max-height:42vh}.chat-panel{min-height:0}.side-scroll{padding:10px}.chat-head{height:58px;padding:9px 12px}.messages{padding:12px}.bubble{max-width:88%}.user-pill > span{display:none}}
 </style>
@@ -30,7 +30,7 @@ const SUPABASE_URL = 'https://pmlcstqpmmoiqnvfxspl.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_kx4UGLboJuhwN6P3JcbNZg_-39zZoZV';
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 const $ = (s) => document.querySelector(s);
-const state = { user:null, username:'', requests:[], contacts:[], chats:[], groups:[], activeChat:null, activeChatType:null, activeGroupTitle:'', activeContact:null, requestProfiles:{}, messages:[], channel:null, searchTimer:null };
+const state = { user:null, username:'', requests:[], contacts:[], chats:[], groups:[], activeChat:null, activeChatType:null, activeGroupTitle:'', activeContact:null, requestProfiles:{}, messages:[], pinnedMessages:[], channel:null, searchTimer:null };
 const esc = (v='') => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const initials = (s='?') => esc(s.slice(0,1).toUpperCase() || '?');
 function avatarMarkup(path,label){return '<div class="avatar"><span>'+initials(label)+'</span><img class="avatar-image" data-path="'+esc(path)+'" alt="" hidden onerror="this.remove()"></div>';}
@@ -42,6 +42,79 @@ function formatBytes(bytes){return bytes<1024*1024?Math.ceil(bytes/1024)+' KB':(
 function attachmentComposer(){return '<div id="attachment-list" class="attachment-list hidden"></div><form class="composer" id="message-form"><button class="btn attach-btn" id="attach-files" type="button" title="Dateien anhängen" aria-label="Dateien anhängen">📎</button><input class="hidden" id="file-input" type="file" multiple accept="image/jpeg,image/png,image/webp,image/gif,.pdf,.txt,.csv,.doc,.docx,.xls,.xlsx,.ppt,.pptx"><input id="message-text" type="text" maxlength="5000" autocomplete="off" placeholder="Nachricht schreiben (optional) …" aria-label="Nachricht (optional)"><button class="btn primary" type="submit">Senden</button></form>';}
 function renderAttachments(items){if(!items?.length)return '';return '<div class="message-files">'+items.map(a=>a.signedUrl?(a.mime_type.startsWith('image/')?'<a class="message-file" href="'+esc(a.signedUrl)+'" target="_blank" rel="noopener"><img src="'+esc(a.signedUrl)+'" alt="'+esc(a.file_name)+'"><span>'+esc(a.file_name)+'</span></a>':'<a class="message-file" href="'+esc(a.signedUrl)+'" target="_blank" rel="noopener" download="'+esc(a.file_name)+'">📎 '+esc(a.file_name)+' · '+formatBytes(a.size_bytes)+'</a>'):'<span class="attachment-chip">📎 '+esc(a.file_name)+'</span>').join('')+'</div>';}
 async function loadMessageAttachments(messages){if(!messages.length)return;const ids=messages.map(m=>m.id);const {data,error}=await supabase.from('chat_message_attachments').select('id,message_id,object_path,file_name,mime_type,size_bytes').in('message_id',ids);if(error){showError(error);return;}const byMessage=new Map();for(const item of data||[]){const {data:signed}=await supabase.storage.from('mychat-files').createSignedUrl(item.object_path,3600);item.signedUrl=signed?.signedUrl||null;if(!byMessage.has(item.message_id))byMessage.set(item.message_id,[]);byMessage.get(item.message_id).push(item);}for(const message of messages)message.attachments=byMessage.get(message.id)||[];}
+
+function messageActions(m){
+ const pinned=state.pinnedMessages.some(p=>p.message_id===m.id);
+ return '<div class="message-actions"><button class="btn" type="button" data-share-message="'+m.id+'">↗ Teilen</button><button class="btn" type="button" data-toggle-pin="'+m.id+'">'+(pinned?'📌 Lösen':'📌 Fixieren')+'</button>'+(m.sender_id===state.user.id?'<button class="btn danger" type="button" data-delete-message="'+m.id+'">🗑 Löschen</button>':'')+'</div>';
+}
+function pinnedStrip(){
+ if(!state.pinnedMessages.length)return '';
+ const p=state.pinnedMessages[state.pinnedMessages.length-1];
+ const m=state.messages.find(x=>x.id===p.message_id);
+ if(!m)return '';
+ const label=m.message_text||m.attachments?.[0]?.file_name||'Datei';
+ return '<div class="pinned-strip"><span>📌</span><span class="pin-text"><b>Fixiert:</b> '+esc(label)+'</span><button class="btn" type="button" data-unpin-message="'+m.id+'">Lösen</button></div>';
+}
+async function togglePinnedMessage(messageId){
+ const pinned=state.pinnedMessages.some(p=>p.message_id===messageId);
+ const result=pinned
+  ? await supabase.from('chat_pinned_messages').delete().eq('message_id',messageId).eq('chat_id',state.activeChat)
+  : await supabase.from('chat_pinned_messages').insert({chat_id:state.activeChat,message_id:messageId,pinned_by:state.user.id});
+ if(result.error){showError(result.error);return;}
+ await loadPinnedMessages();renderMessages();toast(pinned?'Nachricht gelöst.':'Nachricht fixiert.');
+}
+async function loadPinnedMessages(){
+ const {data,error}=await supabase.from('chat_pinned_messages').select('id,chat_id,message_id,pinned_by,created_at').eq('chat_id',state.activeChat).order('created_at',{ascending:true});
+ if(error){showError(error);state.pinnedMessages=[];return;}
+ state.pinnedMessages=data||[];
+}
+async function deleteMessage(messageId){
+ if(!confirm('Möchtest du diese eigene Nachricht wirklich löschen?'))return;
+ const {error}=await supabase.from('chat_messages').update({deleted_at:new Date().toISOString()}).eq('id',messageId).eq('chat_id',state.activeChat);
+ if(error){showError(error);return;}
+ state.messages=state.messages.filter(m=>m.id!==messageId);
+ state.pinnedMessages=state.pinnedMessages.filter(p=>p.message_id!==messageId);
+ renderMessages();toast('Nachricht gelöscht.');
+}
+function wireMessageActions(){
+ document.querySelectorAll('[data-toggle-pin],[data-unpin-message]').forEach(b=>b.addEventListener('click',()=>togglePinnedMessage(b.dataset.togglePin||b.dataset.unpinMessage)));
+ document.querySelectorAll('[data-delete-message]').forEach(b=>b.addEventListener('click',()=>deleteMessage(b.dataset.deleteMessage)));
+ document.querySelectorAll('[data-share-message]').forEach(b=>b.addEventListener('click',()=>openShareDialog(b.dataset.shareMessage)));
+}
+function openShareDialog(messageId){
+ const choices=[...state.contacts.map(c=>({value:'direct:'+c.id,label:'Privat: @'+c.username})),...state.groups.map(g=>({value:'group:'+g.id,label:'Gruppe: '+g.title}))];
+ if(!choices.length){toast('Du hast noch keine anderen Chats.');return;}
+ const overlay=document.createElement('div');overlay.className='share-overlay';overlay.id='share-overlay';
+ overlay.innerHTML='<div class="share-dialog"><h3>Nachricht teilen</h3><label class="small muted" for="share-target">Chat auswählen</label><select id="share-target">'+choices.map(x=>'<option value="'+esc(x.value)+'">'+esc(x.label)+'</option>').join('')+'</select><div class="share-dialog-actions"><button class="btn" id="share-cancel" type="button">Abbrechen</button><button class="btn primary" id="share-confirm" type="button">Teilen</button></div></div>';
+ document.body.appendChild(overlay);
+ $('#share-cancel').addEventListener('click',()=>overlay.remove());
+ overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.remove();});
+ $('#share-confirm').addEventListener('click',async()=>{
+  const target=$('#share-target').value,button=$('#share-confirm');button.disabled=true;
+  try{
+   let chatId;
+   if(target.startsWith('group:'))chatId=target.slice(6);
+   else {const {data,error}=await supabase.rpc('create_direct_chat',{p_other_user:target.slice(7)});if(error)throw error;chatId=data;}
+   await forwardMessage(messageId,chatId);
+   overlay.remove();
+  }catch(error){showError(error);button.disabled=false;}
+ });
+}
+async function forwardMessage(messageId,targetChatId){
+ const original=state.messages.find(m=>m.id===messageId);if(!original)throw new Error('Nachricht nicht gefunden.');
+ const {data:newMessage,error}=await supabase.from('chat_messages').insert({chat_id:targetChatId,sender_id:state.user.id,message_text:original.message_text||''}).select('id').single();
+ if(error)throw error;
+ const metadata=[];
+ for(const file of original.attachments||[]){
+  const newId=crypto.randomUUID(),newPath=targetChatId+'/'+state.user.id+'/'+newId;
+  const {error:copyError}=await supabase.storage.from('mychat-files').copy(file.object_path,newPath);
+  if(copyError)throw copyError;
+  metadata.push({id:newId,message_id:newMessage.id,chat_id:targetChatId,uploader_id:state.user.id,object_path:newPath,file_name:file.file_name,mime_type:file.mime_type,size_bytes:file.size_bytes});
+ }
+ if(metadata.length){const {error:metaError}=await supabase.from('chat_message_attachments').insert(metadata);if(metaError)throw metaError;}
+ toast('Nachricht weitergeleitet.');
+}
+
 function setupComposer(){
  const form=$('#message-form'),picker=$('#file-input'),list=$('#attachment-list'),attach=$('#attach-files');
  if(!form||!picker)return;
@@ -201,20 +274,20 @@ async function openContact(userId){
 async function loadMessages(){
  const {data,error}=await supabase.from('chat_messages').select('id,chat_id,sender_id,message_text,created_at').eq('chat_id',state.activeChat).is('deleted_at',null).order('created_at',{ascending:true}).limit(100);
  if(error){showError(error);return}
- state.messages=data||[];await loadMessageAttachments(state.messages);renderMessages();
+ state.messages=data||[];await loadMessageAttachments(state.messages);await loadPinnedMessages();renderMessages();
 }
 function renderMessages(){
  if(state.activeChatType==='group'){renderGroupMessages();return}
  const contact=state.contacts.find(c=>c.id===state.activeContact);const panel=$('#chat-panel');if(!panel||!contact)return;
- panel.innerHTML=`<header class="chat-head">${avatarMarkup("profiles/"+contact.id+"/avatar",contact.username)}<div><h2>@${esc(contact.username)}</h2><small>Privater Chat</small></div></header><div class="messages" id="messages">${state.messages.length?state.messages.map(m=>`<article class="bubble ${m.sender_id===state.user.id?'mine':''}">${m.message_text?'<div>'+esc(m.message_text)+'</div>':''}${renderAttachments(m.attachments)}<div class="meta">${new Date(m.created_at).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})}</div></article>`).join(''):'<p class="empty">Noch keine Nachrichten. Schreib die erste Nachricht!</p>'}</div>${attachmentComposer()}`;
- const list=$('#messages');list.scrollTop=list.scrollHeight;loadAvatarImages(panel);setupComposer();
+ panel.innerHTML=`<header class="chat-head">${avatarMarkup("profiles/"+contact.id+"/avatar",contact.username)}<div><h2>@${esc(contact.username)}</h2><small>Privater Chat</small></div></header><div class="messages" id="messages">${pinnedStrip()}<div class="messages" id="messages">${state.messages.length?state.messages.map(m=>`<article class="bubble ${m.sender_id===state.user.id?'mine':''}">${m.message_text?'<div>'+esc(m.message_text)+'</div>':''}${renderAttachments(m.attachments)}<div class="meta">${new Date(m.created_at).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})}</div>${messageActions(m)}</article>`).join(''):'<p class="empty">Noch keine Nachrichten. Schreib die erste Nachricht!</p>'}</div>${attachmentComposer()}`;
+ const list=$('#messages');list.scrollTop=list.scrollHeight;loadAvatarImages(panel);setupComposer();wireMessageActions();
 }
 function renderGroupMessages(){
  const panel=$('#chat-panel');if(!panel)return;
- panel.innerHTML=`<header class="chat-head">${avatarMarkup("groups/"+state.activeChat+"/avatar",state.activeGroupTitle)}<div><h2>${esc(state.activeGroupTitle)}</h2><small>Gruppenchat</small></div><span class="spacer"></span><button class="btn" id="change-group-photo" type="button">Gruppenbild ändern</button><input class="hidden" id="group-photo-input" type="file" accept="image/jpeg,image/png,image/webp"></header><div class="messages" id="messages">${state.messages.length?state.messages.map(m=>'<article class="bubble '+(m.sender_id===state.user.id?'mine':'')+'"><div>'+esc(m.message_text)+'</div>'+renderAttachments(m.attachments)+'<div class="meta">'+(m.sender_id===state.user.id?'Du':'Mitglied')+' · '+new Date(m.created_at).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})+'</div></article>').join(''):'<p class="empty">Noch keine Nachrichten. Schreib die erste Nachricht!</p>'}</div>${attachmentComposer()}`;
+ panel.innerHTML=`<header class="chat-head">${avatarMarkup("groups/"+state.activeChat+"/avatar",state.activeGroupTitle)}<div><h2>${esc(state.activeGroupTitle)}</h2><small>Gruppenchat</small></div><span class="spacer"></span><button class="btn" id="change-group-photo" type="button">Gruppenbild ändern</button><input class="hidden" id="group-photo-input" type="file" accept="image/jpeg,image/png,image/webp"></header>${pinnedStrip()}<div class="messages" id="messages">${state.messages.length?state.messages.map(m=>'<article class="bubble '+(m.sender_id===state.user.id?'mine':'')+'">'+(m.message_text?'<div>'+esc(m.message_text)+'</div>':'')+renderAttachments(m.attachments)+'<div class="meta">'+(m.sender_id===state.user.id?'Du':'Mitglied')+' · '+new Date(m.created_at).toLocaleString('de-DE',{dateStyle:'short',timeStyle:'short'})+'</div>'+messageActions(m)+'</article>').join(''):'<p class="empty">Noch keine Nachrichten. Schreib die erste Nachricht!</p>'}</div>${attachmentComposer()}`;
  const list=$('#messages');list.scrollTop=list.scrollHeight;loadAvatarImages(panel);
  const photoInput=$('#group-photo-input');$('#change-group-photo').addEventListener('click',()=>photoInput.click());photoInput.addEventListener('change',async()=>{const file=photoInput.files?.[0];if(await uploadImage('groups/'+state.activeChat+'/avatar',file)){await loadSidebar();renderGroupMessages();}photoInput.value='';});
- setupComposer();
+ setupComposer();wireMessageActions();
 }
 
 supabase.auth.onAuthStateChange((event)=>{if(event==='SIGNED_IN'||event==='SIGNED_OUT')setTimeout(boot,0)});
